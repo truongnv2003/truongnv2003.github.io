@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .giohang{
+                background-color: rgb(84, 193, 133);
+                font-size: 1.2em;
+                width: 100%;
+                margin: 0 auto;
+                display: block;
+        }
+        table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            
+            td,
+            th {
+                border: 1px solid rgb(206, 190, 190);
+                padding: 6px;
+                text-align: center;
+            }
+            
+            caption {
+                font-weight: 600;
+                font-size: 1.2em;
+            }
+            
+            button {
+                width: 60px;
+                height: 25px;
+            }
+            
+            h2 {
+                text-align: center;
+            }
+            
+            td img {
+                float: left;
+                padding-left: 1rem;
+            }
+    
+        </style>
+        <script>
+            function them(button) {
+                var row = button.parentElement.parentElement.cloneNode(true);
+                var btn_xoa = row.getElementsByTagName("button")[0];
+                btn_xoa.innerText = "Xóa";
+                btn_xoa.setAttribute('onclick', 'xoa(this)');
+                document.getElementById("cart").appendChild(row);
+                document.getElementById("cart").style.display = "";
+                }
+    
+            function xoa(button) {
+                var row = button.parentElement.parentElement;
+                var cart = document.getElementById("cart");
+                var rows = cart.getElementsByTagName("tr");
+                document.getElementById("cart").removeChild(row);
+    
+                var tong = 0;
+                for (var i = 0; i < rows.length; i++) {
+    
+                     var price = rows[i].children[1].innerText;
+                        price = parseInt(price);
+                        tong = tong + price;
+                    }
+                document.getElementById("tong").innerText = tong;
+                }
+    
+            function tinh_tong() {
+                var cart = document.getElementById("cart");
+                var rows = cart.getElementsByTagName("tr");
+    
+                var tong = 0;
+                for (var i = 0; i < rows.length; i++) {
+                    var price = rows[i].children[1].innerText;
+                        price = parseInt(price);
+                        tong += price;
+                    }
+                document.getElementById("tong").innerText = tong;
+    
+                }
+    
+               var demLanMua = 0;
+    
+            function dem() {
+                demLanMua++;
+                document.getElementById("demLanMua").innerHTML = demLanMua;
+                document.getElementById("demLanMua").style.color = "red";
+                document.getElementById("demLanMua").style.fontWeight = "700";
+                document.getElementById("demLanMua").style.padding = "0.2rem";
+            }
+        </script>
+</head>
+<body>
+    <div class="giohang">
+        <table>
+            <thead>
+                <tr>
+
+                    <th>Thông tin tài khoản</th>
+                    <th>Giá</th>
+                    <th>Số Lượng</th>
+                    <th>Mua</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> Quần Tây Âu </td>
+                    <td > 210.000VND </td>
+                    <td><input type="number" id="qty" value="1"></td>
+                    <td><button onclick="them(this); tinh_tong();">Chọn</button>
+                </tr>
+                <tr>
+                    <td>  Quần Ống Rộng </td>
+                    <td > 40.000VND </td>
+                    <td><input type="number" id="qty" value="1"></td>
+                    <td><button onclick="them(this); tinh_tong();">Chọn</button>
+                </tr>                
+                <tr>
+                    <td>  Quần Jeans Nam </td>
+                    <td > 400.000VND </td>
+                    <td><input type="number" id="qty" value="1"></td>
+                    <td><button onclick="them(this); tinh_tong();">Chọn</button>
+                </tr>                
+                <tr>
+                    <td>  Áo Thun </td>
+                    <td > 160.000VND </td>
+                    <td><input type="number" id="qty" value="1"></td>
+                    <td><button onclick="them(this); tinh_tong();">Chọn</button>
+                </tr>                
+                <tr>
+                    <td>  Áo Hoodie </td>
+                    <td > 250.000VND </td>
+                    <td><input type="number" id="qty" value="1"></td>
+                    <td><button onclick="them(this); tinh_tong();">Chọn</button>
+                </tr>               
+                <tr>
+                    <td> Đồ Đá Bóng </td>
+                    <td > 160.000VND </td>
+                    <td><input type="number" id="qty" value="1"></td>
+                    <td><button onclick="them(this); tinh_tong();">Chọn</button>
+                </tr>
+
+            </tbody>
+        </table>
+        <hr style="margin:20px 0">
+        <table id="cart">
+            <caption>GIỎ HÀNG CỦA BẠN</caption>
+        </table>
+        <h2>Tổng số tiền của bạn là: <span id="tong">0</span> </h2>
+    </div>
+</body>
+</html>
